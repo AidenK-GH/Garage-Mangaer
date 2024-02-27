@@ -5,22 +5,10 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public class Truck
+    public class Truck : Vehicle
     {
-        public float cargoVolume
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public float cargoVolume;
+        public bool IsTransportingHazardousMaterials;
 
-        public bool IsTransportingHazardousMaterials
-        {
-            get => default;
-            set
-            {
-            }
-        }
     }
 }

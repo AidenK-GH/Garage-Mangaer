@@ -7,36 +7,48 @@ namespace Ex03.GarageLogic
 {
     public class Vehicle
     {
-        public string ModelName
+        public string ModelName;
+        public int NumberOfWheels;
+        public string LicenseNumber;
+        public string condition;//turn to enum
+        public Wheel[] CollectionOfWheels;
+        public string ownersName;
+
+        public Vehicle(string thisLicenseNumber, int thisnumberOfWheels)
         {
-            get => default;
-            set
+            LicenseNumber = thisLicenseNumber;
+
+            condition = "in repair";
+            NumberOfWheels = thisnumberOfWheels;
+            CollectionOfWheels = new Wheel[thisnumberOfWheels];
+
+        }
+
+        public void FillWheelsToMax()
+        {
+            foreach (Wheel wheel in CollectionOfWheels)
             {
+                wheel.InflatingTheWheelToMax();
             }
         }
 
-        public string LicenseNumber
+        public float GetMaxAirPressure()
         {
-            get => default;
-            set
-            {
-            }
+            return CollectionOfWheels[0].MaxAirPressure;
         }
 
-        public float PercentageOfEnergyRemaining
+        public Dictionary<string, string> GetVehucleStats()
         {
-            get => default;
-            set
-            {
-            }
+            Dictionary<string, string> VehicleStats = new Dictionary<string, string>();
+
+            VehicleStats.Add("ModelName", ModelName);
+            VehicleStats.Add("LicenseNumber", LicenseNumber);
+            VehicleStats.Add("condition", condition);
+            VehicleStats.Add("ownersName", ownersName);
+            // need more info
+
+            return VehicleStats;
         }
 
-        public Wheel CollectionOfWheels
-        {
-            get => default;
-            set
-            {
-            }
-        }
     }
 }

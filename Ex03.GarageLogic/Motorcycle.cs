@@ -5,22 +5,11 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public class Motorcycle
+    public class Motorcycle : Vehicle
     {
-        public int EngineVolumeInCC
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public int EngineVolumeInCC;
+        public int LicenseType; //turn to enum
 
-        public MotorcycleLicenseType LicenseType
-        {
-            get => default;
-            set
-            {
-            }
-        }
+
     }
 }

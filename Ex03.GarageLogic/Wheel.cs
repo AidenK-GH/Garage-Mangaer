@@ -7,33 +7,34 @@ namespace Ex03.GarageLogic
 {
     public class Wheel
     {
-        public string manufacturerName
+        public string manufacturerName;
+        public float CurrentAirPressure;
+        public float MaxAirPressure;
+
+        internal Wheel(string manufacturerName, float currentAirPressure, float maxAirPressure)
         {
-            get => default;
-            set
+            this.manufacturerName = manufacturerName;
+            CurrentAirPressure = currentAirPressure;
+            MaxAirPressure = maxAirPressure;
+        }
+
+
+        public void InflatingTheWheel(int AmountOfAir)
+        {
+            if (MaxAirPressure< AmountOfAir+CurrentAirPressure)
             {
+                throw new ArgumentException();
+            }
+            else
+            {
+                CurrentAirPressure = AmountOfAir + CurrentAirPressure;
             }
         }
 
-        public float CurrentAirPressure
+        public void InflatingTheWheelToMax()
         {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public float MaxAirPressure
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public void InflatingTheWheel()
-        {
-            throw new System.NotImplementedException();
+            float howMuchAirWheelNeeds = MaxAirPressure - CurrentAirPressure;
+            CurrentAirPressure = howMuchAirWheelNeeds + CurrentAirPressure;
         }
     }
 }
