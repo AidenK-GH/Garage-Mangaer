@@ -13,6 +13,7 @@ namespace Ex03.GarageLogic
         public string condition;//turn to enum
         public Wheel[] CollectionOfWheels;
         public string ownersName;
+        public Dictionary<string, string> uniqinformation; 
 
         public Vehicle(string thisLicenseNumber, int thisnumberOfWheels)
         {

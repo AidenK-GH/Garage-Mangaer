@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,17 +16,20 @@ namespace Ex03.GarageLogic
         //}
 
 
-        public Dictionary<string, string> uniqinformation;
+        //public Dictionary<string, string> uniqinformation;
 
 
 
         internal Car(string LicenseNumber) :base( LicenseNumber,5)
         {
             this.LicenseNumber = LicenseNumber;
+            uniqinformation = new Dictionary<string, string>();
 
             uniqinformation.Add("CarColor", "CarColor");
             uniqinformation.Add("number of doors", "5");
+
         }
+
         public CarColor Color; //turn to enum
         float PercentageOfEnergyRemaining;
         public string carType;

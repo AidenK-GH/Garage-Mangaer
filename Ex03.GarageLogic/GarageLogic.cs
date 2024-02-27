@@ -13,12 +13,23 @@ namespace Ex03.GarageLogic
 
         // Dictionary < string "CAR" "EL CAR" , Vehicle > Vehicles the garage can handle
         public Dictionary<string, Vehicle> VehiclesTheGarageCanHandle;
-
+        public List<string> ourgaragevehacledisciption;
         public GarageLogic()
         {
             VehiclesInGarage = new Dictionary<string, Vehicle>();
 
             VehiclesTheGarageCanHandle = new Dictionary<string, Vehicle>();
+
+            ourgaragevehacledisciption = new List<string>();
+            ourgaragevehacledisciption.Add("1:a motorcycle  that works on Octan98 maximum of 5.8 liter ,and have 2 wheels  with air presur of 29");
+            ourgaragevehacledisciption.Add("2:an electric motorcycle with a bettary of 2.8 houres , and have 2 wheels  with air presur of 29");
+            ourgaragevehacledisciption.Add("3:a car  that works on Octan95, maximum of 58 liter ,and have 5 wheels  with air presur of 30");
+            ourgaragevehacledisciption.Add("4:an electric car  with a bettary of 4.8 houres , and have 5 wheels  with air presur of 30");
+            ourgaragevehacledisciption.Add("5:a truk  that works on soler maximum of 110 liter , and have 12 wheels  with air presur of 28");
+
+
+
+            //VehiclesTheGarageCanHandle.Add("motorcycle", "a motorcycle that works on Octan98");
 
             //// motorcycle fuel: wheel = 2, airPmax = 29, fuelType = Octan98, fuelTank = 5.8 liters
             //VehiclesTheGarageCanHandle.Add("motorcycle fuel",

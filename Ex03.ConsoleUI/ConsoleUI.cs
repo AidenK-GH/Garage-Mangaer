@@ -1,5 +1,4 @@
-﻿using Ex03.GarageLogic;
-using System;
+﻿using System;
 using System.Text;
 
 
@@ -131,8 +130,11 @@ A garage can only handle vehicles with certain details.
 To make it easier to enter details, say which of the following models is the same as your car
 Then enter the additional details that are specific to your vehicle, such as the owner's name");
                 Console.WriteLine("here:");
-
-                PrintDictionaryVehiclesTheGarageCanHandle();
+                foreach (string str in garage.ourgaragevehacledisciption)
+                {
+                    Console.WriteLine(str);
+                }
+                //PrintDictionaryVehiclesTheGarageCanHandle();
 
                 string inputModalName = Console.ReadLine();
                 //garage.VehiclesTheGarageCanHandle[inputModalName];
@@ -281,7 +283,7 @@ Then enter the additional details that are specific to your vehicle, such as the
                 Console.WriteLine("owners name:{0}", garage.VehiclesInGarage[licenseNumber].ownersName);
                 Console.WriteLine("status:{0}", garage.VehiclesInGarage[licenseNumber].condition);
 
-                for(int i=0; i< garage.VehiclesInGarage[licenseNumber].CollectionOfWheels.Length;i++)
+                for (int i = 0; i < garage.VehiclesInGarage[licenseNumber].CollectionOfWheels.Length; i++)
                 {
                     Console.WriteLine("wheel {1}:");
                     Console.WriteLine("wheel pressure:{0}", garage.VehiclesInGarage[licenseNumber].CollectionOfWheels[i].CurrentAirPressure);
@@ -290,6 +292,11 @@ Then enter the additional details that are specific to your vehicle, such as the
                 Console.WriteLine("energy type:needs to creat the enum");
                 Console.WriteLine("amount of energy:enum");
 
+                foreach (var atr in garage.VehiclesInGarage[licenseNumber].uniqinformation)
+                {
+
+                    Console.WriteLine(atr.Key + atr.Value);
+                }
 
             }
             else
