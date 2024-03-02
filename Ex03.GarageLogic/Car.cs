@@ -1,57 +1,90 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Security.Policy;
 
 namespace Ex03.GarageLogic
 {
     public class Car : Vehicle
     {
-        //internal Car(string LicenseNumber, float PercentageOfEnergyRemaining, string ModelName, int numberOfWheels, CarColor CarColor, string electricOrGas)
-        //    : base(LicenseNumber, PercentageOfEnergyRemaining, ModelName, 5)
-        //{
-        //    this.Color = CarColor;
-        //    //if(electricOrGas)
-        //}
+        // ---------------------- Values ----------------------
+        public CarColor Color; // [Blue, White, Red, Yellow]
+        public int NumberOfDoors; // 2, 3, 4, 5
 
-
-        //public Dictionary<string, string> uniqinformation;
-
-
-
-        internal Car(string LicenseNumber) :base( LicenseNumber,5)
+        // ---------------------- BUILDER ----------------------
+        internal Car(string i_LicenseNumber, char i_FuelOrElectric, int NumberOfWheels, float MaxAirPressure, TypeOfFuel GasType, float MaxAmountOfEnergy)
+        : base(i_LicenseNumber, NumberOfWheels, MaxAirPressure, GasType, MaxAmountOfEnergy)
         {
-            this.LicenseNumber = LicenseNumber;
+            this.LicenseNumber = i_LicenseNumber;
+
+            // CarQuestions.Add(); // Blue, White, Red, Yellow
+            Questions = new List<UniqueQuestion>(); //{ "what color is your car? choose 1-blue 2-White 3-Red 4-Yellow:",1,5 };
+
+            Questions.Add(new UniqueQuestion("what color is your car? choose 1-blue 2-White 3-Red 4-Yellow:", 1, 4, 1));
+            Questions.Add(new UniqueQuestion("how many doors does the car have? 2,3,4,5", 2, 5, 1));
             uniqinformation = new Dictionary<string, string>();
+            //uniqinformation.Add("CarColor", Color.ToString());
+            //uniqinformation.Add("number of doors", "5");
 
-            uniqinformation.Add("CarColor", "CarColor");
-            uniqinformation.Add("number of doors", "5");
-
-        }
-
-        public CarColor Color; //turn to enum
-        float PercentageOfEnergyRemaining;
-        public string carType;
-        public int NumberOfDoors;
-        public string ModelName;
-
-        public void Generatewheelsforcar(string[] menufactursnames, int[] currentAirPressurs)
-        {
-            for (int i = 0; i < 5; i++)
+            if (i_FuelOrElectric == 'f')
             {
-                CollectionOfWheels[i].CurrentAirPressure = 0;
-                CollectionOfWheels[i].MaxAirPressure = 30;
-                CollectionOfWheels[i].manufacturerName= menufactursnames[i];
+                fuelInformation = new FuelTypeVehicle(GasType, MaxAmountOfEnergy);
+                TypeOfEnergy = "gaselin";
+                ElectricInformation = null;
             }
-            
+            else
+            {
+                fuelInformation = null;
+                ElectricInformation = new ElectricTypeVehicle(MaxAmountOfEnergy);
+                TypeOfEnergy = "electricity";
+            }
         }
 
-        public Dictionary<string, string> getuniqinformation()
+        // ----------------------------------------------------------------------------------
+        // ------------------- COLOR -------------------
+        public void SetCarColore(string whatColor)
         {
-            return uniqinformation;
+            switch (whatColor)
+            {
+                case "1":
+                    Color = CarColor.Blue;
+                    break;
+                case "2":
+                    Color = CarColor.White;
+                    break;
+                case "3":
+                    Color = CarColor.Red;
+                    break;
+                case "4":
+                    Color = CarColor.Yellow;
+                    break;
+            }
+            uniqinformation.Add("Car Color: ", Color.ToString());
         }
 
+        // ------------------- DOOR -------------------
+        public void SetCarNumberOfDoors(string whatDoor)
+        {
+            switch (whatDoor)
+            {
+                case "2":
+                    NumberOfDoors = 2;
+                    break;
+                case "3":
+                    NumberOfDoors = 3;
+                    break;
+                case "4":
+                    NumberOfDoors = 4;
+                    break;
+                case "5":
+                    NumberOfDoors = 5;
+                    break;
+            }
+            uniqinformation.Add("Number Of Doors:", NumberOfDoors.ToString());
+        }
+
+        public List<UniqueQuestion> getListOfQuistion()
+        {
+            return Questions;
+        }
 
     }
 }

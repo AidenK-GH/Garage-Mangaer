@@ -1,90 +1,112 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Ex03.GarageLogic.GarageLogic">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+  <Class Name="Ex03.GarageLogic.ValueOutOfRangeException">
+    <Position X="4.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAAAAAAAAAAAAEAAgAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GarageLogic.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>ValueOutOfRangeException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.FuelTypeVehicle">
+    <Position X="6.5" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAQAAAAAAABFAAAAAAAQAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>FuelTypeVehicle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ex03.GarageLogic.ElectricTypeVehicle">
+    <Position X="4.75" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAQAAAAAAAAAAAAABABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ElectricTypeVehicle.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ex03.GarageLogic.Vehicle">
-    <Position X="2.5" Y="2.25" Width="2.5" />
+    <Position X="2" Y="0.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAIAEACAgAIAAAAAAEAAAAAAAAAAAAAAgCAgAAAA=</HashCode>
+      <HashCode>AAAAAAAEACiiAIAIAAABGABBQAEQAAAEAAAgCAgAAAA=</HashCode>
       <FileName>Vehicle.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ex03.GarageLogic.Wheel">
-    <Position X="7.25" Y="1.75" Width="1.75" />
+    <Position X="8.25" Y="1.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>AAAAgAAAAgAAAAAAAAAACAAAAAAAAAAAAAIAAAAAAAg=</HashCode>
       <FileName>Wheel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Ex03.GarageLogic.Truck">
-    <Position X="5.5" Y="5" Width="2.5" />
+  <Class Name="Ex03.GarageLogic.GarageLogic">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICAAAAAA=</HashCode>
-      <FileName>Truck.cs</FileName>
+      <HashCode>AAAAAACQAIAABAgAAAAAAAAAAAAAAAABACAAAAQAAAA=</HashCode>
+      <FileName>GarageLogic.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ex03.GarageLogic.Car">
-    <Position X="3.75" Y="5.5" Width="1.5" />
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>BAAAAEQAAAAAAAAAAAAAAQBAQAAAAAAAAAAAgAgAAAA=</HashCode>
+      <HashCode>EAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAABAAAgAAAAAg=</HashCode>
       <FileName>Car.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="Color" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Ex03.GarageLogic.Motorcycle">
-    <Position X="1" Y="5.25" Width="1.75" />
+  <Struct Name="Ex03.GarageLogic.UniqueQuestion">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Motorcycle.cs</FileName>
+      <HashCode>AAAAAAAAABgAMAAAEAAAAAAAAAAAAAAEgAAAAAAIAAA=</HashCode>
+      <FileName>UniqueQuestion.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="Ex03.GarageLogic.GarageInfo">
-    <Position X="3.75" Y="0.75" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>ABAAAAAAAAABAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GarageInfo.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Ex03.GarageLogic.ValueOutOfRangeException">
-    <Position X="9.5" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
-      <FileName>ValueOutOfRangeException.cs</FileName>
-    </TypeIdentifier>
-  </Class>
+  </Struct>
   <Enum Name="Ex03.GarageLogic.CarColor">
-    <Position X="9.25" Y="6" Width="1.5" />
+    <Position X="2.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAgAAAAAAAAAABAAAAAAAAAAAACAAAAA=</HashCode>
       <FileName>CarColor.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Ex03.GarageLogic.NumberOfDoors">
-    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Position X="0.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAQAAAAAAAAAAAAAAAACAAABAAAAAAAAAA=</HashCode>
       <FileName>NumberOfDoors.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Ex03.GarageLogic.MotorcycleLicenseType">
-    <Position X="9.75" Y="1.75" Width="2" />
+    <Position X="9.25" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAEACAAAAAAABAAAAAAAAAAI=</HashCode>
       <FileName>MotorcycleLicenseType.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
-  <Enum Name="Ex03.GarageLogic.VehicleConditionInGarage">
-    <Position X="0.5" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAgAAAAAAAAAAAAAABAAAA=</HashCode>
-      <FileName>VehicleConditionInGarage.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

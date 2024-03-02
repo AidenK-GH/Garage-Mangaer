@@ -5,10 +5,13 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public class Truck : Vehicle
-    {
-        public float cargoVolume;
-        public bool IsTransportingHazardousMaterials;
+    //public class Truck : Vehicle
+    //{
+    //    public float cargoVolume;
+    //    public bool IsTransportingHazardousMaterials;
 
-    }
+    //    //public Truck(string thisLicenseNumber, int thisnumberOfWheels) : base(thisLicenseNumber, thisnumberOfWheels)
+    //    //{
+    //    //}
+    //}
 }
