@@ -7,65 +7,68 @@ namespace Ex03.GarageLogic
 {
     public class Motorcycle : Vehicle
     {
-        public MotorcycleLicenseType MotorcycleLicenseType; // [A1, A2, AB, B2]
-        public int EngineVolumeInCC;
+        public MotorcycleLicenseType m_MotorcycleLicenseType; // [A1, A2, AB, B2]
+        public int m_EngineVolumeInCC;
         
         // ---------------------- BUILDER ----------------------
-        internal Motorcycle(string i_LicenseNumber, char i_FuelOrElectric, int NumberOfWheels, float MaxAirPressure, TypeOfFuel GasType, float MaxAmountOfEnergy)
-        : base(i_LicenseNumber, NumberOfWheels, MaxAirPressure, GasType, MaxAmountOfEnergy)
+        internal Motorcycle(string i_LicenseNumber, char i_FuelOrElectric, int i_NumberOfWheels, float i_MaxAirPressure, TypeOfFuel i_GasType, float i_MaxAmountOfEnergy)
+        : base(i_LicenseNumber, i_NumberOfWheels, i_MaxAirPressure, i_GasType, i_MaxAmountOfEnergy)
         {
-            this.LicenseNumber = i_LicenseNumber;
+            this.m_LicenseNumber = i_LicenseNumber;
 
-            Questions = new List<UniqueQuestion>();
+            m_Questions = new List<UniqueQuestion>();
 
-            Questions.Add(new UniqueQuestion("what License Type do you have? choose 1-A1 2-A2 3-AB 4-B2:", 1, 4, 1));
-            Questions.Add(new UniqueQuestion("what is the Engine Volume In CC?", 0, Convert.ToInt32(float.PositiveInfinity), 2));
-            uniqinformation = new Dictionary<string, string>();
+            m_Questions.Add(new UniqueQuestion("what License Type do you have? choose 1-A1 2-A2 3-AB 4-B2:", 1, 4, 1));
+            m_Questions.Add(new UniqueQuestion("what is the Engine Volume In CC?", 0, 1000000000, 2));
+            m_UniqueInformation = new Dictionary<string, string>();
 
             if (i_FuelOrElectric == 'f')
             {
-                fuelInformation = new FuelTypeVehicle(GasType, MaxAmountOfEnergy);
-                TypeOfEnergy = "gaselin";
-                ElectricInformation = null;
+                m_FuelInformation = new FuelTypeVehicle(i_GasType, i_MaxAmountOfEnergy);
+                m_TypeOfEnergy = "gaselin";
+                m_ElectricInformation = null;
             }
             else
             {
-                fuelInformation = null;
-                ElectricInformation = new ElectricTypeVehicle(MaxAmountOfEnergy);
-                TypeOfEnergy = "electricity";
+                m_FuelInformation = null;
+                m_ElectricInformation = new ElectricTypeVehicle(i_MaxAmountOfEnergy);
+                m_TypeOfEnergy = "electricity";
             }
         }
+
         // ----------------------------------------------------------------------------------
         // ------------------- Motorcycle License Type -------------------
-        public void SetMotorcycleLicenseType(string i_whatMotorcycleLicenseType)
+        public void SetMotorcycleLicenseType(string i_WhatMotorcycleLicenseType)
         {
-            switch (i_whatMotorcycleLicenseType)
+            switch (i_WhatMotorcycleLicenseType)
             {
                 case "1":
-                    MotorcycleLicenseType = MotorcycleLicenseType.A1;
+                    m_MotorcycleLicenseType = MotorcycleLicenseType.A1;
                     break;
                 case "2":
-                    MotorcycleLicenseType = MotorcycleLicenseType.A2;
+                    m_MotorcycleLicenseType = MotorcycleLicenseType.A2;
                     break;
                 case "3":
-                    MotorcycleLicenseType = MotorcycleLicenseType.AB;
+                    m_MotorcycleLicenseType = MotorcycleLicenseType.AB;
                     break;
                 case "4":
-                    MotorcycleLicenseType = MotorcycleLicenseType.B2;
+                    m_MotorcycleLicenseType = MotorcycleLicenseType.B2;
                     break;
             }
-            uniqinformation.Add("Motorcycle License Type: ", MotorcycleLicenseType.ToString());
+            m_UniqueInformation.Add("Motorcycle License Type: ", m_MotorcycleLicenseType.ToString());
         }
-        // ------------------- EngineVolumeInCC -------------------
+        // ------------------- m_EngineVolumeInCC -------------------
         public void SetEngineVolumeInCC(string i_whatEngineVolumeInCC)
         {
-
-            uniqinformation.Add("Engine Volume In CC: ", EngineVolumeInCC.ToString());
+            int EngineVolumeInCC;
+            int.TryParse(i_whatEngineVolumeInCC, out EngineVolumeInCC);
+            this.m_EngineVolumeInCC = EngineVolumeInCC;
+            m_UniqueInformation.Add("Engine Volume In CC: ", i_whatEngineVolumeInCC);
         }
         // ----------------------------------------------------------------------------------
         public List<UniqueQuestion> getListOfQuistion()
         {
-            return Questions;
+            return m_Questions;
         }
     }
 }

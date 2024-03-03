@@ -1,68 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Ex03.GarageLogic 
+namespace Ex03.GarageLogic
 {
     public class Truck : Vehicle
     {
-        public float cargoVolume;
-        public bool IsTransportingHazardousMaterials;
+        public float m_CargoVolume;
+        public bool m_IsTransportingHazardousMaterials;
 
         // ---------------------- v BUILDER v ----------------------
-        internal Truck(string i_LicenseNumber, char i_FuelOrElectric, int NumberOfWheels, float MaxAirPressure, TypeOfFuel GasType, float MaxAmountOfEnergy)
-        : base(i_LicenseNumber, NumberOfWheels, MaxAirPressure, GasType, MaxAmountOfEnergy)
+        internal Truck(string i_LicenseNumber, char i_FuelOrElectric, int i_NumberOfWheels, float i_MaxAirPressure, TypeOfFuel i_GasType, float i_MaxAmountOfEnergy)
+        : base(i_LicenseNumber, i_NumberOfWheels, i_MaxAirPressure, i_GasType, i_MaxAmountOfEnergy)
         {
-            this.LicenseNumber = i_LicenseNumber;
+            this.m_LicenseNumber = i_LicenseNumber;
 
-            Questions = new List<UniqueQuestion>();
-
-            Questions.Add(new UniqueQuestion("does you truck Transporting Hazardous Materials? choose 1-yes 2-no:", 1, 2, 1));
-            Questions.Add(new UniqueQuestion("what is the cargo Volume?", 0, Convert.ToInt32(float.PositiveInfinity), 2));
-            uniqinformation = new Dictionary<string, string>();
+            m_Questions = new List<UniqueQuestion>();
+            m_Questions.Add(new UniqueQuestion("does you truck Transporting Hazardous Materials? choose 1-yes 2-no:", 1, 2, 1));
+            m_Questions.Add(new UniqueQuestion("what is the cargo Volume?", 0, Convert.ToInt32(float.PositiveInfinity), 2));
+            m_UniqueInformation = new Dictionary<string, string>();
 
             if (i_FuelOrElectric == 'f')
             {
-                fuelInformation = new FuelTypeVehicle(GasType, MaxAmountOfEnergy);
-                TypeOfEnergy = "gaselin";
-                ElectricInformation = null;
+                m_FuelInformation = new FuelTypeVehicle(i_GasType, i_MaxAmountOfEnergy);
+                m_TypeOfEnergy = "gaselin";
+                m_ElectricInformation = null;
             }
             else
             {
-                fuelInformation = null;
-                ElectricInformation = new ElectricTypeVehicle(MaxAmountOfEnergy);
-                TypeOfEnergy = "electricity";
+                m_FuelInformation = null;
+                m_ElectricInformation = new ElectricTypeVehicle(i_MaxAmountOfEnergy);
+                m_TypeOfEnergy = "electricity";
             }
         }
         // -------------------------------- v SET v ---------------------------------------------------------------------
-        // ------------------- IsTransportingHazardousMaterials -------------------
-        public void SetIsTransportingHazardousMaterials(string i_whatIsTransportingHazardousMaterials)
+        // ------------------- m_IsTransportingHazardousMaterials -------------------
+        public void SetIsTransportingHazardousMaterials(string i_WhatIsTransportingHazardousMaterials)
         {
             string answerString = "false";
-            switch (i_whatIsTransportingHazardousMaterials)
+            switch (i_WhatIsTransportingHazardousMaterials)
             {
                 case "1":
-                    IsTransportingHazardousMaterials = true;
+                    m_IsTransportingHazardousMaterials = true;
                     answerString = "True";
                     break;
                 case "2":
-                    IsTransportingHazardousMaterials = false;
+                    m_IsTransportingHazardousMaterials = false;
                     answerString = "False";
                     break;
             }
-            uniqinformation.Add("Is Transporting Hazardous Materials: ", answerString);
+            m_UniqueInformation.Add("Is Transporting Hazardous Materials: ", answerString);
         }
         // ------------------- cargoVolume -------------------
-        public void SetCargoVolume(string i_whatcargoVolume)
+        public void SetCargoVolume(string i_WhatCargoVolume)
         {
-            
-            uniqinformation.Add("Cargo Volume: ", cargoVolume.ToString());
+            float CargoVolume;
+            float.TryParse(i_WhatCargoVolume, out CargoVolume);
+            CargoVolume = CargoVolume;
+            m_UniqueInformation.Add("Cargo Volume: {0} ", i_WhatCargoVolume);
         }
         // ------------------------------------- v GET v ----------------------------------------------------------------
         public List<UniqueQuestion> getListOfQuistion()
         {
-            return Questions;
+            return m_Questions;
         }
     }
 }

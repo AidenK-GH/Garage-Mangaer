@@ -8,14 +8,14 @@ namespace Ex03.GarageLogic
     // ValueOutOfRangeException -- throw when the input is invalid on a range level, like input > maxAirPressure
     public class ValueOutOfRangeException : Exception
     {
-        public float MaxValue { get; }
-        public float MinValue { get; }
+        public float m_MaxValue { get; }
+        public float m_MinValue { get; }
 
-        public ValueOutOfRangeException(float minValue, float maxValue)
-            : base($"Value is out of range. Allowed range: [{minValue}, {maxValue}]")
+        public ValueOutOfRangeException(float i_MinValue, float i_MaxValue)
+            : base($"Value is out of range. Allowed range: [{i_MinValue}, {i_MaxValue}]")
         {
-            MinValue = minValue;
-            MaxValue = maxValue;
+            m_MinValue = i_MinValue;
+            m_MaxValue = i_MaxValue;
         }
 
     }

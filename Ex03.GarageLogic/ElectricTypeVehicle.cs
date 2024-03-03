@@ -7,42 +7,41 @@ namespace Ex03.GarageLogic
 {
     public class ElectricTypeVehicle
     {
-        public float CorrentAmountOfBattry; // in hours
-        public float MaxAmountOfBattry; // in hours
+        public float m_CorrentAmountOfBattry; // in hours
+        public float m_MaxAmountOfBattry; // in hours
 
-        public ElectricTypeVehicle(float MaxAmountOfBattry)
+        public ElectricTypeVehicle(float i_MaxAmountOfBattry)
         {
-            this.MaxAmountOfBattry = MaxAmountOfBattry;
-            //this.CorrentAmountOfBattry = CorrentAmountOfBattry;
+            this.m_MaxAmountOfBattry = i_MaxAmountOfBattry;
         }
 
         public void CharageBattryToMax()
         {
-            CorrentAmountOfBattry = MaxAmountOfBattry;
+            m_CorrentAmountOfBattry = m_MaxAmountOfBattry;
         }
 
-        public void CharageBattryWithAdditionalMin(float AdditionalEnergy)
+        public void CharageBattryWithAdditionalMin(float i_AdditionalEnergy)
         {
-            // note AdditionalEnergy is in min, need to change to hours
-            float additionalEnergyInHours = AdditionalEnergy / 60f; // change to hours
+            // note i_AdditionalEnergy is in min, need to change to hours
+            float additionalEnergyInHours = i_AdditionalEnergy / 60f; // change to hours
 
-            // check if AdditionalEnergy is too much
-            if (additionalEnergyInHours + CorrentAmountOfBattry > MaxAmountOfBattry)
+            // check if i_AdditionalEnergy is too much
+            if (additionalEnergyInHours + m_CorrentAmountOfBattry > m_MaxAmountOfBattry)
             {
-                throw new ValueOutOfRangeException(0, MaxAmountOfBattry);//("Exsids the maximum battry limit.");
+                throw new ValueOutOfRangeException(0, m_MaxAmountOfBattry*60 - m_CorrentAmountOfBattry*60);//("Exsids the maximum battry limit.");
             }
 
-            CorrentAmountOfBattry += additionalEnergyInHours;
+            m_CorrentAmountOfBattry += additionalEnergyInHours;
         }
 
-        // SET CorrentAmountOfBattry
-        public void SetCorrentAmountOfBattry(float correntAmountOfBattry)
+        // SET m_CorrentAmountOfBattry
+        public void SetCorrentAmountOfBattry(float i_CorrentAmountOfBattery)
         {
-            if (correntAmountOfBattry > MaxAmountOfBattry)
+            if (i_CorrentAmountOfBattery > m_MaxAmountOfBattry)
             {
-                throw new ValueOutOfRangeException(0, MaxAmountOfBattry); //Exception("Exsids the maximum battry limit, can't set.");
+                throw new ValueOutOfRangeException(0, m_MaxAmountOfBattry); //Exception("Exsids the maximum battry limit, can't set.");
             }
-            this.CorrentAmountOfBattry = correntAmountOfBattry;
+            this.m_CorrentAmountOfBattry = i_CorrentAmountOfBattery;
         }
 
 

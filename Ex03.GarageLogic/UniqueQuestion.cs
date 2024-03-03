@@ -11,8 +11,8 @@ namespace Ex03.GarageLogic
         int m_Min;
         int m_Max;
 
-        // 1- number from min to max. LIKE: (enum)carColor 1-blue 2-red, OR (bool)TruckIsTransportingHazardousMaterials 1-yes 2-no.
-        // 2- liner number from min to max BUT float like MotoEngineVolumeInCC 0 to float.PositiveInfinity
+        // 1- number from i_Min to i_Max. LIKE: (enum)carColor 1-blue 2-red, OR (bool)TruckIsTransportingHazardousMaterials 1-yes 2-no.
+        // 2- liner number from i_Min to i_Max BUT float like MotoEngineVolumeInCC 0 to float.PositiveInfinity
         // 3- string without conditions. LIKE: (string)the name of the doll on your dasboard.
         int m_TypeAnswer; 
 
@@ -39,12 +39,12 @@ namespace Ex03.GarageLogic
         }
 
         //  ---------------- Constructor ----------------
-        public UniqueQuestion(string question, int min, int max, int TypeAnswer)
+        public UniqueQuestion(string i_Question, int i_Min, int i_Max, int i_TypeAnswer)
         {
-            m_Question = question;
-            m_Min = min;
-            m_Max = max;
-            m_TypeAnswer = TypeAnswer;
+            m_Question = i_Question;
+            m_Min = i_Min;
+            m_Max = i_Max;
+            m_TypeAnswer = i_TypeAnswer;
         }
 
     }

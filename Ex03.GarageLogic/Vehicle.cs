@@ -9,62 +9,60 @@ namespace Ex03.GarageLogic
     public class Vehicle
     {
         // every vehicle has
-        public string ModelName;
-        public string LicenseNumber;
-        public float PercentageOfEnergyRemaining;
-        public int NumberOfWheels;
-        public Wheel[] CollectionOfWheels;
+        public string m_ModelName;
+        public string m_LicenseNumber;
+        public float m_PercentageOfEnergyRemaining;
+        public int m_NumberOfWheels;
+        public Wheel[] m_CollectionOfWheels;
 
         // garage info
-        public string ownersName;
-        public string ownersPhoneNumber;
-        public ConditionInGarage Condition; //[inRepair, fixed, paid, none]
+        public string m_OwnersName;
+        public string m_OwnersPhoneNumber;
+        public ConditionInGarage m_Condition; //[inRepair, fixed, paid, none]
 
         // energy - the one the vehicle DOESNT use will be null
-        public FuelTypeVehicle fuelInformation;
-        public ElectricTypeVehicle ElectricInformation;
-        public string TypeOfEnergy;
+        public FuelTypeVehicle m_FuelInformation;
+        public ElectricTypeVehicle m_ElectricInformation;
+        public string m_TypeOfEnergy;
 
         // uniqin formation
-        public Dictionary<string, string> uniqinformation;
-        public List<UniqueQuestion> Questions;
-
-        
+        public Dictionary<string, string> m_UniqueInformation;
+        public List<UniqueQuestion> m_Questions;
 
         // ----------------------- BUILDER -----------------------------------------
 
-        public Vehicle(string thisLicenseNumber, int thisnumberOfWheels, float MaxAirPressure, TypeOfFuel GasTypey, float MaxAmountOfEnergy)
+        public Vehicle(string i_ThisLicenseNumber, int i_ThisnumberOfWheels, float i_MaxAirPressure, TypeOfFuel i_GasTypey, float i_MaxAmountOfEnergy)
         {
-            LicenseNumber = thisLicenseNumber;
+            m_LicenseNumber = i_ThisLicenseNumber;
 
-            NumberOfWheels = thisnumberOfWheels;
-            CollectionOfWheels = new Wheel[thisnumberOfWheels];
-            for (int i = 0; i < CollectionOfWheels.Length; i++)
+            m_NumberOfWheels = i_ThisnumberOfWheels;
+            m_CollectionOfWheels = new Wheel[i_ThisnumberOfWheels];
+            for (int i = 0; i < m_CollectionOfWheels.Length; i++)
             {
-                CollectionOfWheels[i] = new Wheel(MaxAirPressure);
+                m_CollectionOfWheels[i] = new Wheel(i_MaxAirPressure);
             }
 
-            Condition = ConditionInGarage.InRepair;
+            m_Condition = ConditionInGarage.InRepair;
         }
 
         // -------------------------- Generate Wheels --------------------------------------
 
-        public void GenerateWheels(string[] menufactursnames, float[] currentAirPressurs, float MaxCarWheelsAirPressure, int numberOfWheels)
+        public void GenerateWheels(string[] i_Menufactursnames, float[] i_CurrentAirPressurs, float i_MaxCarWheelsAirPressure, int i_NumberOfWheels)
         {
-            for (int i = 0; i < numberOfWheels; i++)
+            for (int i = 0; i < i_NumberOfWheels; i++)
             {
-                CollectionOfWheels[i].CurrentAirPressure = currentAirPressurs[i];
-                CollectionOfWheels[i].MaxAirPressure = MaxCarWheelsAirPressure;
-                CollectionOfWheels[i].manufacturerName = menufactursnames[i];
+                m_CollectionOfWheels[i].m_CurrentAirPressure = i_CurrentAirPressurs[i];
+                m_CollectionOfWheels[i].m_MaxAirPressure = i_MaxCarWheelsAirPressure;
+                m_CollectionOfWheels[i].m_ManufacturerName = i_Menufactursnames[i];
             }
         }
 
-        public void GenerateWheelsWithoutMaxAirPressure(string[] menufactursnames, float[] currentAirPressurs, int numberOfWheels)
+        public void GenerateWheelsWithoutMaxAirPressure(string[] i_Menufactursnames, float[] i_CurrentAirPressurs, int I_NumberOfWheels)
         {
-            for (int i = 0; i < numberOfWheels; i++)
+            for (int i = 0; i < I_NumberOfWheels; i++)
             {
-                CollectionOfWheels[i].CurrentAirPressure = currentAirPressurs[i];
-                CollectionOfWheels[i].manufacturerName = menufactursnames[i];
+                m_CollectionOfWheels[i].m_CurrentAirPressure = i_CurrentAirPressurs[i];
+                m_CollectionOfWheels[i].m_ManufacturerName = i_Menufactursnames[i];
             }
         }
 
@@ -72,7 +70,7 @@ namespace Ex03.GarageLogic
 
         public void FillWheelsToMax()
         {
-            foreach (Wheel wheel in CollectionOfWheels)
+            foreach (Wheel wheel in m_CollectionOfWheels)
             {
                 wheel.InflatingTheWheelToMax();
             }
@@ -80,7 +78,7 @@ namespace Ex03.GarageLogic
 
         public float GetMaxAirPressure()
         {
-            return CollectionOfWheels[0].MaxAirPressure;
+            return m_CollectionOfWheels[0].m_MaxAirPressure;
         }
 
         // ----------------------------------------------------------------
@@ -88,38 +86,53 @@ namespace Ex03.GarageLogic
         {
             Dictionary<string, string> VehicleStats = new Dictionary<string, string>();
 
-            VehicleStats.Add("ModelName", ModelName);
-            VehicleStats.Add("LicenseNumber", LicenseNumber);
-            VehicleStats.Add("condition", Condition.ToString());
-            VehicleStats.Add("ownersName", ownersName);
+            VehicleStats.Add("ModelName", m_ModelName);
+            VehicleStats.Add("LicenseNumber", m_LicenseNumber);
+            VehicleStats.Add("condition", m_Condition.ToString());
+            VehicleStats.Add("ownersName", m_OwnersName);
             // need more info
 
             return VehicleStats;
         }
 
-        public void SetAmountOfEnergy(float AmountOfEnergy)
+        // 1
+        public void SetAmountOfEnergy(float i_AmountOfEnergy)
         {
-            if (fuelInformation == null)
+            if (m_FuelInformation == null)
             {
                 
-                ElectricInformation.SetCorrentAmountOfBattry(AmountOfEnergy);
+                m_ElectricInformation.SetCorrentAmountOfBattry(i_AmountOfEnergy);
             }
             else
             {
-                fuelInformation.SetFuel(AmountOfEnergy);
+                m_FuelInformation.SetFuel(i_AmountOfEnergy);
+            }
+        }
+
+        // 5 6
+        public void FillEnergy(float i_AmountOfEnergy)
+        {
+            if (m_FuelInformation == null)
+            {
+
+                m_ElectricInformation.CharageBattryWithAdditionalMin(i_AmountOfEnergy);
+            }
+            else
+            {
+                m_FuelInformation.FillFuel(i_AmountOfEnergy);
             }
         }
 
         public string getAmounOfEnergy()
         {
             string AmountOfEnergyNow = "error";
-            if(fuelInformation == null)
+            if(m_FuelInformation == null)
             {
-                AmountOfEnergyNow = ElectricInformation.CorrentAmountOfBattry + "hours";
+                AmountOfEnergyNow = m_ElectricInformation.m_CorrentAmountOfBattry + "hours";
             }
             else
             {
-                AmountOfEnergyNow = fuelInformation.CorrentAmountOfFuel + " liters";
+                AmountOfEnergyNow = m_FuelInformation.m_CorrentAmountOfFuel + " liters";
             }
             return AmountOfEnergyNow;
         }
