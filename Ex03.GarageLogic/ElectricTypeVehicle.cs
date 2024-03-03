@@ -27,7 +27,6 @@ namespace Ex03.GarageLogic
             float additionalEnergyInHours = AdditionalEnergy / 60f; // change to hours
 
             // check if AdditionalEnergy is too much
-            // throw exception
             if (additionalEnergyInHours + CorrentAmountOfBattry > MaxAmountOfBattry)
             {
                 throw new ValueOutOfRangeException(0, MaxAmountOfBattry);//("Exsids the maximum battry limit.");

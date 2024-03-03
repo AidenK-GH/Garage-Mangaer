@@ -101,6 +101,7 @@ namespace Ex03.GarageLogic
         {
             if (fuelInformation == null)
             {
+                
                 ElectricInformation.SetCorrentAmountOfBattry(AmountOfEnergy);
             }
             else

@@ -46,6 +46,7 @@
     <Compile Include="ElectricTypeVehicle.cs" />
     <Compile Include="FuelTypeVehicle.cs" />
     <Compile Include="GarageLogic.cs" />
+    <Compile Include="MotocycleLicenseType.cs" />
     <Compile Include="Motorcycle.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="TypeOfFuel.cs" />

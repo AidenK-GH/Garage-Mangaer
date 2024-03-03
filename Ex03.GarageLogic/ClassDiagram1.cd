@@ -58,7 +58,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAACQAIAABAgAAAAAAAAAAAAAAAABACAAAAQAAAA=</HashCode>
+      <HashCode>AAAAAACQAIAABAgQAABAAAAAAAAAAgABACAAAAQAAAE=</HashCode>
       <FileName>GarageLogic.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -103,10 +103,10 @@
     </TypeIdentifier>
   </Enum>
   <Enum Name="Ex03.GarageLogic.MotorcycleLicenseType">
-    <Position X="9.25" Y="0.5" Width="2" />
+    <Position X="6.75" Y="3.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAEACAAAAAAABAAAAAAAAAAI=</HashCode>
-      <FileName>MotorcycleLicenseType.cs</FileName>
+      <FileName>MotocycleLicenseType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

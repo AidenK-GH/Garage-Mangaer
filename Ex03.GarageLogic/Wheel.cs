@@ -15,18 +15,18 @@ namespace Ex03.GarageLogic
         //    MaxAirPressure = maxAirPressure;
         //}
 
-
+        // --------- builder -------------------------------------
         internal Wheel(float maxAirPressure)
         {
             MaxAirPressure = maxAirPressure;
         }
 
-
+        // ------------ add air Pressure to wheels ---------------------------
         public void InflatingTheWheel(int AmountOfAir)
         {
             if (MaxAirPressure < AmountOfAir + CurrentAirPressure)
             {
-                throw new ArgumentException();
+                throw new ValueOutOfRangeException(0, MaxAirPressure);
             }
             else
             {
@@ -39,5 +39,7 @@ namespace Ex03.GarageLogic
             float howMuchAirWheelNeeds = MaxAirPressure - CurrentAirPressure;
             CurrentAirPressure = howMuchAirWheelNeeds + CurrentAirPressure;
         }
+
+        //
     }
 }
