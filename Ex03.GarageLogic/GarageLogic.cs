@@ -58,27 +58,27 @@ namespace Ex03.GarageLogic
             */
         }
 
-        public void doesFuelMatches(string llicenceNumber,int FuelChoice)
+        public void doesFuelMatches(string llicenceNumber, int FuelChoice)
         {
             // [Soler ,Octan95 ,Octan96 ,Octan98]
             //bool canFillFuel=false;
             switch (FuelChoice)
             {
                 case 1:
-                    if(VehiclesInGarage[llicenceNumber].fuelInformation.TypeOfFuelForOurVehicle != TypeOfFuel.Soler) 
-                          throw new ArgumentException("fuel does not matches try again ") ;
+                    if (VehiclesInGarage[llicenceNumber].fuelInformation.TypeOfFuelForOurVehicle != TypeOfFuel.Soler)
+                        throw new ArgumentException("fuel does not matches try again ");
                     break;
                 case 2:
-                    if(VehiclesInGarage[llicenceNumber].fuelInformation.TypeOfFuelForOurVehicle != TypeOfFuel.Octan95)
-                         throw new ArgumentException("fuel does not matches try again ");
+                    if (VehiclesInGarage[llicenceNumber].fuelInformation.TypeOfFuelForOurVehicle != TypeOfFuel.Octan95)
+                        throw new ArgumentException("fuel does not matches try again ");
                     break;
                 case 3:
-                  if(  VehiclesInGarage[llicenceNumber].fuelInformation.TypeOfFuelForOurVehicle != TypeOfFuel.Octan96)
-                         throw new ArgumentException("fuel does not matches try again "); 
+                    if (VehiclesInGarage[llicenceNumber].fuelInformation.TypeOfFuelForOurVehicle != TypeOfFuel.Octan96)
+                        throw new ArgumentException("fuel does not matches try again ");
                     break;
                 case 4:
-                   if( VehiclesInGarage[llicenceNumber].fuelInformation.TypeOfFuelForOurVehicle != TypeOfFuel.Octan98)
-                          throw new ArgumentException("fuel does not matches try again "); 
+                    if (VehiclesInGarage[llicenceNumber].fuelInformation.TypeOfFuelForOurVehicle != TypeOfFuel.Octan98)
+                        throw new ArgumentException("fuel does not matches try again ");
                     break;
 
             }
@@ -92,13 +92,13 @@ namespace Ex03.GarageLogic
                     VehiclesInGarage.Add(licenceNumber, new Car(licenceNumber, 'f', 2, (float)29, TypeOfFuel.Octan98, (float)58));
                     break;
                 case "2": // motrocycle electric: wheel = 2, airPmax = 29, battryMaxTime = 2.8 hours
-                    VehiclesInGarage.Add(licenceNumber, new Car(licenceNumber, 'e', 2, (float)29, TypeOfFuel.None , (float)28));
+                    VehiclesInGarage.Add(licenceNumber, new Car(licenceNumber, 'e', 2, (float)29, TypeOfFuel.None, (float)28));
                     break;
                 case "3": // car fuell: wheel = 5, airPmax = 30, fuelType = Octan98, fuelTank = 5.8 liters
-                    VehiclesInGarage.Add(licenceNumber, new Car(licenceNumber, 'f', 5, (float)30, TypeOfFuel.Octan95 , (float)58));
+                    VehiclesInGarage.Add(licenceNumber, new Car(licenceNumber, 'f', 5, (float)30, TypeOfFuel.Octan95, (float)58));
                     break;
                 case "4": // car electric: wheel = 5, airPmax = 30, battryMaxTime = 4.8 hours
-                    VehiclesInGarage.Add(licenceNumber, new Car(licenceNumber, 'e', 5, (float)30, TypeOfFuel.None , (float)48));
+                    VehiclesInGarage.Add(licenceNumber, new Car(licenceNumber, 'e', 5, (float)30, TypeOfFuel.None, (float)48));
                     break;
                 case "5": // truck: wheel = 12, airPmax = 28, fuelType = Soler, fuelTank = 110 liters
                     VehiclesInGarage.Add(licenceNumber, new Car(licenceNumber, 'f', 12, (float)28, TypeOfFuel.Soler, (float)110));
@@ -155,25 +155,25 @@ namespace Ex03.GarageLogic
         //    // v CAR 2 v --------------------------
         //}
 
-        public void  SetUnqiue(string licenceNumber,string inputCarType,List<string> answers )
+        public void SetUnqiue(string licenceNumber, string inputCarType, List<string> answers)
         {
             switch (inputCarType)
             {
                 case "1": // 1 motocycle f // 2 motocycle e
                 case "2":
-                    //break;
+                //break;
 
                 case "3": // 3 car f // 4 car e
-                case "4": 
+                case "4":
                     (VehiclesInGarage[licenceNumber] as Car).SetCarColore(answers[0]);
-                    (VehiclesInGarage[licenceNumber] as Car).SetCarNumberOfDoors((answers[1]);
+                    (VehiclesInGarage[licenceNumber] as Car).SetCarNumberOfDoors(answers[1]);
                     break;
 
                 case "5": // 5 truck f
                     break;
             }
         }
-       
+
         // ---------------------------- v builders / constractors v --------------------------------------------------------
 
         //public newCar(CarColor thisCarColor, string electricOrGas) : base(thisCarColor, electricOrGas)
@@ -228,6 +228,7 @@ namespace Ex03.GarageLogic
         }
 
         // -------------------- CHECK INPUTS -------------------------------------------------------------------
+        // value just needs to be between nim and max, [min, 1.5, 3,...., max] can be float
         public void CheckValueInRange(float value, float minValue, float maxValue)
         {
             if (value < minValue || value > maxValue)
@@ -236,14 +237,20 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void CheckInValueForMenu(float value, float minValue, float maxValue)
+        // value needs to be a naturl number [1,2,3,...max] just int
+        public void CheckInValueForMenu(string value, float minValue, float maxValue)
         {
+            // is int?
+            int temp;
+            if (!int.TryParse(value, out temp))
+            {
+                throw new FormatException("input incurrect");
+            }
 
-        }
-
-        public void CheckInValueForMenu(float value, float minValue, float maxValue)
-        {
-
+            // is in range?
+            float valuetmp;
+            float.TryParse(value, out valuetmp);
+            CheckValueInRange(valuetmp, minValue, maxValue);
         }
 
     }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public class ElectricTypeVehicle // : EnergyStorage
+    public class ElectricTypeVehicle
     {
         public float CorrentAmountOfBattry; // in hours
         public float MaxAmountOfBattry; // in hours
@@ -30,7 +30,7 @@ namespace Ex03.GarageLogic
             // throw exception
             if (additionalEnergyInHours + CorrentAmountOfBattry > MaxAmountOfBattry)
             {
-                throw new ValueOutOfRangeException("Exsids the maximum battry limit.");
+                throw new ValueOutOfRangeException(0, MaxAmountOfBattry);//("Exsids the maximum battry limit.");
             }
 
             CorrentAmountOfBattry += additionalEnergyInHours;
@@ -41,7 +41,7 @@ namespace Ex03.GarageLogic
         {
             if (correntAmountOfBattry > MaxAmountOfBattry)
             {
-                throw new Exception("Exsids the maximum battry limit, can't set.");
+                throw new ValueOutOfRangeException(0, MaxAmountOfBattry); //Exception("Exsids the maximum battry limit, can't set.");
             }
             this.CorrentAmountOfBattry = correntAmountOfBattry;
         }

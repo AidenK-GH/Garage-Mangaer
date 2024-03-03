@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public class FuelTypeVehicle // : EnergyStorage
+    public class FuelTypeVehicle
     {
 
         public TypeOfFuel TypeOfFuelForOurVehicle; //turn to enum [Soler ,Octan95 ,Octan96 ,Octan98]
@@ -13,7 +13,7 @@ namespace Ex03.GarageLogic
 
         public float CorrentAmountOfFuel; // in liters
         public float MaxAmountOfFuel; // in liters
-       
+
         public FuelTypeVehicle(TypeOfFuel TypeOfFuel, float MaxAmountOfFuel)
         {
             this.TypeOfFuelForOurVehicle = TypeOfFuel;
@@ -24,11 +24,11 @@ namespace Ex03.GarageLogic
 
         public void SetFuel(float StartingFuel)
         {
-            if(StartingFuel>MaxAmountOfFuel)
+            if (StartingFuel > MaxAmountOfFuel)
             {
-                throw new Exception("too much fuel try again ");
+                throw new ValueOutOfRangeException(0, MaxAmountOfFuel); //Exception("too much fuel try again ");
             }//אולי יש אופציה להורדה הבדיקת אינפוט תקין תקבל מינימום ומקסימום אפשריים 
-            CorrentAmountOfFuel=StartingFuel;
+            CorrentAmountOfFuel = StartingFuel;
         }
 
         public void FillFuelToMax()
@@ -38,11 +38,11 @@ namespace Ex03.GarageLogic
 
         public void FillFuel(float AdditionalFual)
         {
-            if (AdditionalFual+CorrentAmountOfFuel> MaxAmountOfFuel)
+            if (AdditionalFual + CorrentAmountOfFuel > MaxAmountOfFuel)
             {
-                throw new Exception("too much fuel can't fill");
+                throw new ValueOutOfRangeException(0, MaxAmountOfFuel); //Exception("too much fuel can't fill");
             }
-            CorrentAmountOfFuel= CorrentAmountOfFuel+AdditionalFual;
+            CorrentAmountOfFuel = CorrentAmountOfFuel + AdditionalFual;
         }
 
     }

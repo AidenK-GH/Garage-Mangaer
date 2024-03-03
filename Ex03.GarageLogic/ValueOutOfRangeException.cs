@@ -19,5 +19,12 @@ namespace Ex03.GarageLogic
         }
 
     }
+    // Exception
+    // FormatException
+    //     throw when the input is invalid on a 'prising' level, like input = 'a' when it need to be a number.
+    // ArgumentException
+    //     throw when the input is invalid on a logic level, like entering the worng fuel type.
+    // ValueOutOfRangeException
+    //     throw when the input is invalid on a range level, like input > maxAirPressure
 
 }

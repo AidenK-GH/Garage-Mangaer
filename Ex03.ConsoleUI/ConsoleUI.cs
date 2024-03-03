@@ -16,14 +16,13 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Welcome to Ex03 - Garage Manger");
             printCoolTitle();
             printMenu();
-
+            bool IsInputCurrect = false;
             // create the Garage
             garage = new Ex03.GarageLogic.GarageLogic();
 
             Console.WriteLine("which option you want:");
-            string input = getValidInput(isValidInputForStartMenu);
+            string input = getValidInputMenu(8);
 
-            
             while (input != "8")
             {
                 Console.WriteLine("--------------------------------------------------------------");
@@ -35,7 +34,7 @@ namespace Ex03.ConsoleUI
 
                 printMenu();
                 Console.WriteLine("which option you want:");
-                input = getValidInput(isValidInputForStartMenu);
+                input = getValidInputMenu(8);
             }
 
             Console.WriteLine("press 'Enter' to close the window.");
@@ -106,13 +105,6 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private static string getValidLicenseNumberInput()
-        {
-            Console.WriteLine("enter the License Number for the vehicle:");
-            string input = getValidInput(Temporary_NEED_TO_CHANGE);//checkIfValidLicenseNumber
-            return input;
-        }
-
         // -------- 1 - V
         private static void actionOneEnterANewVehicle()
         {
@@ -173,22 +165,22 @@ Then enter the additional details that are specific to your vehicle, such as the
                     float.TryParse(inputRestartEnergy, out energyAmountFloat);
                     try
                     {
-                        
+
                         garage.RestarteEnergyAmaunt(energyAmountFloat, licenseNumber);
                         canStartEnergyAmount = true;
                     }
-                    catch (Exception ex) 
+                    catch (Exception ex)
                     {
                         Console.WriteLine("{0}: {1}", ex.GetType().Name, ex.Message); //Console.WriteLine(ex.ToString());
                     }
                 }
 
 
-                   
+
                 // ~~~ get owners name ~~~~~~~~~~~~~~~~~~~~~~~~
                 Console.WriteLine("pleas enter the owner's name:");
                 string inputOwnerName = Console.ReadLine();
-                garage.VehiclesInGarage[licenseNumber].ownersName= inputOwnerName;
+                garage.VehiclesInGarage[licenseNumber].ownersName = inputOwnerName;
                 // ~~~ get owners phone ~~~~~~~~~~~~~~~~~~~~~~~~
 
                 Console.WriteLine("pleas enter the owner's phone number:");
@@ -204,7 +196,7 @@ Then enter the additional details that are specific to your vehicle, such as the
             }
         }
 
-        private static void askUniqueQ(string licenseNumber,string UsrerInput)
+        private static void askUniqueQ(string licenseNumber, string UsrerInput)
         {
             List<UniqueQuestion> vehicleq = garage.getInitOfQuestions(licenseNumber);
             string Answer;
@@ -218,13 +210,13 @@ Then enter the additional details that are specific to your vehicle, such as the
                     Console.WriteLine(question.Question);
 
                     Answer = Console.ReadLine();
-                    //int.TryParse(Answer, out AnswerNumber);
+                    int.TryParse(Answer, out AnswerNumber);
 
-                    while (!int.TryParse(Answer, out AnswerNumber) || AnswerNumber > question.Max || AnswerNumber < question.Min )
+                    while (!int.TryParse(Answer, out AnswerNumber) || AnswerNumber > question.Max || AnswerNumber < question.Min)
                     {
                         Console.WriteLine(question.Question);
                         Answer = Console.ReadLine();
-                        //int.TryParse(Answer, out AnswerNumber);
+                        int.TryParse(Answer, out AnswerNumber);
                     }
 
                     Answers.Add(Answer);
@@ -306,7 +298,7 @@ Then enter the additional details that are specific to your vehicle, such as the
         {
             // need to fillter by condition
             Console.WriteLine("enter the condition: 1-in_repair 2-fixed 3-paid 4-no_filtter");
-            string input = getValidInput(Temporary_NEED_TO_CHANGE);
+            string input = getValidInputMenu(4);
             ConditionInGarage conditionToFillterBy;
 
             switch (input) //["in repair", "fixed", "paid"]
@@ -347,7 +339,7 @@ Then enter the additional details that are specific to your vehicle, such as the
             {
                 // Vehicle exists
                 Console.WriteLine("enter the new condition for the vehicle: 1-in_repair 2-fixed 3-paid:");
-                newCondition = getValidInput(Temporary_NEED_TO_CHANGE);//checkIfValidCondition
+                newCondition = getValidInputMenu(3);//checkIfValidCondition
                 ConditionInGarage conditionToFillterBy;
 
                 switch (newCondition) //["in repair", "fixed", "paid"]
@@ -371,7 +363,7 @@ Then enter the additional details that are specific to your vehicle, such as the
                 }
 
                 garage.VehiclesInGarage[licenseNumber].Condition = conditionToFillterBy;
-                Console.WriteLine("Changed " + licenseNumber + " condition to "+ conditionToFillterBy.ToString());
+                Console.WriteLine("Changed " + licenseNumber + " condition to " + conditionToFillterBy.ToString());
             }
             else
             {
@@ -398,7 +390,7 @@ Then enter the additional details that are specific to your vehicle, such as the
             }
         }
 
-        // -------- 5
+        // -------- 5 - V
         private static void actionFiveFillFuel()
         {
             Console.WriteLine("enter the License Number for the vehicle:");
@@ -407,7 +399,7 @@ Then enter the additional details that are specific to your vehicle, such as the
             if (garage.VehiclesInGarage.ContainsKey(licenseNumber))
             {
                 // Vehicle exists
-                if (garage.VehiclesInGarage[licenseNumber].fuelInformation==null)
+                if (garage.VehiclesInGarage[licenseNumber].fuelInformation == null)
                 {
                     Console.WriteLine("vehicle is electric can not accept fuel, exiting to menu.");
                 }
@@ -415,7 +407,7 @@ Then enter the additional details that are specific to your vehicle, such as the
                 {
                     bool fuelmatches = false;
 
-                    while (fuelmatches== false)
+                    while (fuelmatches == false)
                     {
                         Console.WriteLine(garage.VehiclesInGarage[licenseNumber].fuelInformation.typesOfFuel.Question);
                         string fuelTypeInput = Console.ReadLine();
@@ -433,8 +425,8 @@ Then enter the additional details that are specific to your vehicle, such as the
                                 garage.VehiclesInGarage[licenseNumber].fuelInformation.FillFuel(float.Parse(amountOfFuel));
                                 Console.WriteLine("fuel has been filled , exiting to menu.");
                             }
-                            catch (Exception ex) 
-                            { 
+                            catch (Exception ex)
+                            {
                                 //Console.WriteLine(ex.ToString());
                                 Console.WriteLine("{0}: {1}", ex.GetType().Name, ex.Message);
                             }
@@ -442,10 +434,10 @@ Then enter the additional details that are specific to your vehicle, such as the
                         catch (Exception ex)
                         {
                             Console.WriteLine("{0}: {1}", ex.GetType().Name, ex.Message);
-                            
+
                         }
                     }
-                
+
                 }
             }
             else
@@ -454,7 +446,7 @@ Then enter the additional details that are specific to your vehicle, such as the
             }
         }
 
-        // -------- 6
+        // -------- 6 - V
         private static void actionSixChargeBattery()
         {
             Console.WriteLine("enter the License Number for the vehicle:");
@@ -476,11 +468,11 @@ Then enter the additional details that are specific to your vehicle, such as the
                         garage.VehiclesInGarage[licenseNumber].ElectricInformation.CharageBattryWithAdditionalMin(float.Parse(inputHowManyMinToCharge));
                         Console.WriteLine("Battry has been charged , exiting to menu.");
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine("{0}: {1}", e.GetType().Name, e.Message);
                     }
-                    
+
                 }
             }
             else
@@ -506,7 +498,7 @@ Then enter the additional details that are specific to your vehicle, such as the
 
                 for (int i = 0; i < garage.VehiclesInGarage[licenseNumber].CollectionOfWheels.Length; i++)
                 {
-                    Console.WriteLine("wheel {0}:", i+1);
+                    Console.WriteLine("wheel {0}:", i + 1);
                     Console.WriteLine("wheel pressure: {0}", garage.VehiclesInGarage[licenseNumber].CollectionOfWheels[i].CurrentAirPressure);
                     Console.WriteLine("menufacturere name: {0}", garage.VehiclesInGarage[licenseNumber].CollectionOfWheels[i].manufacturerName);
                 }
@@ -537,116 +529,119 @@ Then enter the additional details that are specific to your vehicle, such as the
         }
 
         // ---------------------------- CHECK INPUT ----------------------------------------------------------------------------
-        // Exception
-        // FormatException
-        //     throw when the input is invalid on a 'prising' level, like input = 'a' when it need to be a number.
-        // ArgumentException
-        //     throw when the input is invalid on a logic level, like entering the worng fuel type.
-        // ValueOutOfRangeException
-        //     throw when the input is invalid on a range level, like input > maxAirPressure
 
-        public delegate bool CheckIsInputValid(string i_input, out string i_invalidmassege);
-
-        private static string getValidInput(CheckIsInputValid checkFunction)
+        private static string getValidInputMenu(int max)
         {
             string input = Console.ReadLine();
-            string inValidMassage = "defult";
             bool isInputInValid = false;
 
-            while (!checkFunction(input, out inValidMassage))
+            while (isInputInValid == false)
             {
-                Console.WriteLine("invalid input - " + inValidMassage);
-                Console.WriteLine("enter the input again: ");
-                input = Console.ReadLine();
-            }
-
-            return input;
-        }
-
-        public static bool isValidInputForStartMenu(string i_input, out string i_invalidmassege)
-        {
-            i_invalidmassege = "defult";
-            bool result = false;
-
-            if (int.TryParse(i_input, out int inputAsint))
-            {
-                if (inputAsint > 8 && inputAsint < 1)
+                try
                 {
-                    i_invalidmassege = "can only enter a number from 1 to 8";
+                    garage.CheckInValueForMenu(input, 1, max);
+                    isInputInValid = true;
                 }
-                else
+                catch (Exception ex)
                 {
-                    result = true;
-                    i_invalidmassege = "valid";
+                    Console.WriteLine("{0}: {1}", ex.GetType().Name, ex.Message);
+                    Console.WriteLine("enter the input again: ");
+                    input = Console.ReadLine();
                 }
             }
-            else
-            {
-                i_invalidmassege = "not a number";
-                
-            }
 
-            return result;
+            return input;           
         }
 
-        public static bool Temporary_NEED_TO_CHANGE(string LicenseNumber, out string invalidmassege)
-        {
-            invalidmassege = "Temporary_NEED_TO_CHANGE";
-            return true;
-        }
-        // =======
+        //public delegate bool CheckIsInputValid(string i_input, out string i_invalidmassege);
 
-        // =======
-        public static bool isValidInputForLicenseNumber(string i_input, out string i_invalidmassege)
-        {
-            i_invalidmassege = "defult";
-            bool result = false;
+        //public static bool isValidInputForStartMenu(string i_input, out string i_invalidmassege)
+        //{
+        //    i_invalidmassege = "defult";
+        //    bool result = false;
 
-            if (int.TryParse(i_input, out int inputAsint))
-            {
-                if (inputAsint > 8 && inputAsint < 1)
-                {
-                    i_invalidmassege = "can only enter a number from 1 to 8";
-                }
-                else
-                {
-                    result = true;
-                    i_invalidmassege = "valid";
-                }
-            }
-            else
-            {
-                i_invalidmassege = "not a number";
-            }
+        //    if (int.TryParse(i_input, out int inputAsint))
+        //    {
+        //        if (inputAsint > 8 && inputAsint < 1)
+        //        {
+        //            i_invalidmassege = "can only enter a number from 1 to 8";
+        //        }
+        //        else
+        //        {
+        //            result = true;
+        //            i_invalidmassege = "valid";
+        //        }
+        //    }
+        //    else
+        //    {
+        //        i_invalidmassege = "not a number";
 
-            return result;
-        }
+        //    }
 
-        public static bool IsPercentageOfEnergyRemainingUpTo100(string PercentageOfEnergyRemaining, out string invalidmassege)
-        {
-            bool PercentageOfEnergygood = false;
-            invalidmassege = "this is to much precentege";
-            int numberOfEnergy = int.Parse(PercentageOfEnergyRemaining);
-            if (numberOfEnergy > 0 && numberOfEnergy <= 100)
-            {
-                PercentageOfEnergygood = true;
-            }
+        //    return result;
+        //}
 
-            return PercentageOfEnergygood;
-        }
+        //public static bool Temporary_NEED_TO_CHANGE(string LicenseNumber, out string invalidmassege)
+        //{
+        //    invalidmassege = "Temporary_NEED_TO_CHANGE";
+        //    return true;
+        //}
 
-        public static bool IsUpTo10Cherecters(string LicenseNumber, out string invalidmassege)
-        {
-            bool liceenseNumberGood = false;
-            invalidmassege = "too many cheracters";
-            if (LicenseNumber.Length <= 10)
-            {
-                liceenseNumberGood = true;
-            }
-            return liceenseNumberGood;
-        }
+        //public static bool isValidInputForLicenseNumber(string i_input, out string i_invalidmassege)
+        //{
+        //    i_invalidmassege = "defult";
+        //    bool result = false;
 
+        //    if (int.TryParse(i_input, out int inputAsint))
+        //    {
+        //        if (inputAsint > 8 && inputAsint < 1)
+        //        {
+        //            i_invalidmassege = "can only enter a number from 1 to 8";
+        //        }
+        //        else
+        //        {
+        //            result = true;
+        //            i_invalidmassege = "valid";
+        //        }
+        //    }
+        //    else
+        //    {
+        //        i_invalidmassege = "not a number";
+        //    }
 
+        //    return result;
+        //}
+
+        //public static bool IsPercentageOfEnergyRemainingUpTo100(string PercentageOfEnergyRemaining, out string invalidmassege)
+        //{
+        //    bool PercentageOfEnergygood = false;
+        //    invalidmassege = "this is to much precentege";
+        //    int numberOfEnergy = int.Parse(PercentageOfEnergyRemaining);
+        //    if (numberOfEnergy > 0 && numberOfEnergy <= 100)
+        //    {
+        //        PercentageOfEnergygood = true;
+        //    }
+
+        //    return PercentageOfEnergygood;
+        //}
+
+        //public static bool IsUpTo10Cherecters(string LicenseNumber, out string invalidmassege)
+        //{
+        //    bool liceenseNumberGood = false;
+        //    invalidmassege = "too many cheracters";
+        //    if (LicenseNumber.Length <= 10)
+        //    {
+        //        liceenseNumberGood = true;
+        //    }
+        //    return liceenseNumberGood;
+        //}
+
+        //private static string getValidLicenseNumberInput()
+        //{
+        //    Console.WriteLine("enter the License Number for the vehicle:");
+        //    string input = getValidInput(Temporary_NEED_TO_CHANGE);//checkIfValidLicenseNumber
+        //    return input;
+        //}
 
     }
 }
